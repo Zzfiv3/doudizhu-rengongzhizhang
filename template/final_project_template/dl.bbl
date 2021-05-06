@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}\itemsep=-1pt
+
+\bibitem{MCG}
+P.~Arbel\'{a}ez, J.~Pont-Tuset, J.~Barron, F.~Marques, and J.~Malik.
+\newblock Multiscale combinatorial grouping.
+\newblock In {\em CVPR}, 2014.
+
+\bibitem{bing}
+M.~Cheng, Z.~Zhang, W.~Lin, and P.~H.~S. Torr.
+\newblock {BING:} binarized normed gradients for objectness estimation at
+  300fps.
+\newblock In {\em CVPR}, 2014.
+
+\bibitem{Hosang2015Pami}
+J.~Hosang, R.~Benenson, P.~Doll\'ar, and B.~Schiele.
+\newblock What makes for effective detection proposals?
+\newblock {\em IEEE Trans. on PAMI}, 2015.
+
+\bibitem{scale_aware}
+Z.~Jie, X.~Liang, J.~Feng, W.~F. Lu, E.~H.~F. Tay, and S.~Yan.
+\newblock Scale-aware pixelwise object proposal networks.
+\newblock {\em IEEE Trans. on Image Processing}, 25, 2016.
+
+\end{thebibliography}
