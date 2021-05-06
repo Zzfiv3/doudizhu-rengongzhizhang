@@ -1,1 +1,2 @@
-print('test success')
+print('test')
+print('test2')
