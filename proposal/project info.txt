@@ -1,0 +1,9 @@
+Proposal presentation:
+Less than 6 pages
+Include: task, data set, expect goal
+
+
+Academic report:
+Latex 
+Single column
+5-6 pages
