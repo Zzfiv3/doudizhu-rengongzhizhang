@@ -227,7 +227,12 @@ class HandCard:
     def get_all_combo(self):
         """
         get all possible combos
-        :return:
+
+        returns
+        -------
+        numpy.ndarray
+            a 2d array contains all possible combos, the shape should be (x, 15), 
+            where x equals the number of all possible combos.
         """
         solo = self.get_solo_combo()
         soloChain = self.get_solo_combo(chain=True)
@@ -250,6 +255,27 @@ class HandCard:
                       fourPair, bomb, rocket, passNext]
         combo_list = [i for i in combo_list if i is not None]
         return np.concatenate(combo_list, axis=0).astype(int)
+
+    def get_next_combo(self, pre_combo=None):
+        """
+        Get possible next combo given the combo played out by the previous player
+
+        parameters
+        ----------
+        pre_combo : numpy.ndarray, optional, default=None
+            The combo played out by the previous player, should have shape (1, 15)
+
+        returns
+        -------
+        numpy.ndarray
+            a 2d array contains all possible next combos, the shape should be (x, 15), 
+            where x equals the number of all possible combos, return None if there 
+            is no possible next combo.
+        """
+
+        if pre_combo is None:
+            return self.get_all_combo()
+        
 
 
 a, b, c = deal()
