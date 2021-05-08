@@ -1,7 +1,5 @@
 '''
 发牌-斗地主
-
-Author: dong
 '''
 import random
 
