@@ -1,8 +1,9 @@
 class Primal:
+    """
+    One of the two basic components of a combo
+    """
     def __init__(self, card, card_num):
         """
-        One of the two basic components of a combo
-
         parameters
         ----------
         card : list(str)

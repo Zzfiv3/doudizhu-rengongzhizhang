@@ -1,8 +1,9 @@
 class Kicker:
+    """
+    One of the two basic components of a combo
+    """
     def __init__(self, card, kicker_type):
         """
-        One of the two basic components of a combo
-
         parameters
         ----------
         card : list(str)
