@@ -1,6 +1,6 @@
 import numpy as np
 from numpy import inf
-from combo import Combo
+from game_generation.Combo import Combo
 
 
 class Node:

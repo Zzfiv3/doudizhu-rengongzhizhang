@@ -1,11 +1,11 @@
 from itertools import chain
-from cards import Cards
+from game_generation.cards import Cards
 import numpy as np
 
 
 class Primal(Cards):
-    def __init__(self, arg=None, ctype=None, chain_len=None, num=None, 
-            kicker_type=None, kicker_len=None, bomb=False) -> None:
+    def __init__(self, arg=None, ctype=None, chain_len=None, num=None,
+                 kicker_type=None, kicker_len=None, bomb=False) -> None:
         Cards.__init__(self, arg, ctype)
         self.num = num
         self.chain_len = chain_len
@@ -13,7 +13,6 @@ class Primal(Cards):
         self.kicker_type = kicker_type
         self.kicker_len = kicker_len
 
-        
 
 class Kicker(Cards):
     def __init__(self, arg, ctype, kicker_type, kicker_len) -> None:
@@ -32,7 +31,7 @@ class Combo(Cards):
             Cards.__init__(self, self.primal.card_num + kicker.card_num, 'num')
         else:
             Cards.__init__(self, self.primal.card_num, 'num')
-    
+
     def get_kicker_type(self):
         primal_type = self.get_primal_type()
         if primal_type in [8, 10, 12]:
@@ -55,7 +54,7 @@ class Combo(Cards):
                 if self.primal.chain_len == 1:
                     return 3  # pair
                 elif self.primal.chain_len >= 3:
-                    return 4   # pair chain
+                    return 4  # pair chain
             elif self.primal == 3:
                 if self.primal.chain_len == 1:
                     return 5  # trio
@@ -78,7 +77,6 @@ class Combo(Cards):
                 elif self.kicker.kicker_type == 'pair':
                     return 13  # plane pair
 
-
     def comparable(self, other):
         if self.primal.bomb or other.primal.bomb:
             return True
@@ -100,9 +98,3 @@ class Combo(Cards):
         self_pos = np.where(self.primal.card_num > 0)[0]
         other_pos = np.where(other.primal.card_num > 0)[0]
         return self_pos[0] > other_pos[0]
-
-
-
-
-
-    

@@ -1,10 +1,11 @@
 import numpy as np
 
+
 class Cards:
     def __init__(self, arg=None, ctype=None) -> None:
         self.card_dict = {
-            '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, 
-            '8': 0, '9': 0, 'T': 0, 'J': 0, 'Q': 0, 
+            '3': 0, '4': 0, '5': 0, '6': 0, '7': 0,
+            '8': 0, '9': 0, 'T': 0, 'J': 0, 'Q': 0,
             'K': 0, 'A': 0, '2': 0, 'S': 0, 'B': 0
         }
 

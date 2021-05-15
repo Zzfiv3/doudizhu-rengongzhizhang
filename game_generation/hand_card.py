@@ -1,16 +1,19 @@
 import numpy as np
 from functools import reduce
 from itertools import combinations
-from combo import Combo, Primal, Kicker
-from cards import Cards
+from game_generation.Combo import Combo, Primal, Kicker
+from game_generation.cards import Cards
 
+
+# hc = HandCard([1,2,334,])
+# combo = Combo([ssss])
+# hc.get_next_combo(combo)
 
 
 class HandCard(Cards):
     def __init__(self, arg=None, ctype=None, is_landlord=False) -> None:
         Cards.__init__(self, arg, ctype)
         self.is_landlord = is_landlord
-
 
     def __sub__(self, other):
         result = HandCard(is_landlord=self.is_landlord)
@@ -19,7 +22,6 @@ class HandCard(Cards):
             result.card_dict[card] -= other.card_dict[card]
         result.card_num = np.array(list(result.card_dict.values()))
         return result
-        
 
     def get_next_combo(self, pre_combo=None):
         if pre_combo is None:
@@ -29,7 +31,6 @@ class HandCard(Cards):
             if combo > pre_combo:
                 next_combo_list.append(combo)
         return next_combo_list
-
 
     def get_all_combo(self):
         combo_list = list()
@@ -46,7 +47,6 @@ class HandCard(Cards):
                 combo_list.append(combo)
         return combo_list
 
-
     def get_all_primal(self):
         solo = self.get_simple(1)
         solo_chain = self.get_chain(1, 5)
@@ -62,11 +62,11 @@ class HandCard(Cards):
         plane_solo = self.get_chain(3, 2, kicker_type='solo')
         plane_pair = self.get_chain(3, 2, kicker_type='pair')
         primal_all = reduce(
-            lambda x, y: x + y, 
-            [solo, solo_chain, pair, pair_chain, trio, trio_chain, bomb, trio_solo, 
+            lambda x, y: x + y,
+            [solo, solo_chain, pair, pair_chain, trio, trio_chain, bomb, trio_solo,
              trio_pair, four_solo, four_pair, plane_solo, plane_pair])
         return primal_all
-    
+
     def get_kicker(self, primal):
         cards_left = self - primal
         kicker_card_num = 1 if primal.kicker_type == 'solo' else 2
@@ -79,13 +79,12 @@ class HandCard(Cards):
             kicker_array = np.zeros(15, dtype=int)
             kicker_array[np.array(c)] = kicker_card_num
             kicker = Kicker(
-                kicker_array, 'num', 
-                kicker_type=primal.kicker_type, 
+                kicker_array, 'num',
+                kicker_type=primal.kicker_type,
                 kicker_len=primal.kicker_len
             )
             kicker_list.append(kicker)
         return kicker_list
-
 
     def get_simple(self, card_num, kicker_type=None):
         primal_list = list()
@@ -99,7 +98,6 @@ class HandCard(Cards):
                     primal = Primal(primal_array, 'num', 1, card_num, kicker_type, 1)
                 primal_list.append(primal)
         return primal_list
-
 
     def get_chain(self, card_num, min_len, kicker_type=None):
         pos = np.where(self.card_num[0:12] >= card_num)[0]
@@ -115,7 +113,6 @@ class HandCard(Cards):
                         primal = Primal(primal_array, 'num', j - i + 1, card_num, kicker_type, j - i + 1)
                     primal_list.append(primal)
         return primal_list
-
 
     def get_bomb(self):
         primal_list = list()

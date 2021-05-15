@@ -1,6 +1,6 @@
 import pickle
 import numpy as np
-from combo import Cards
+from game_generation.Combo import Cards
 from functools import reduce
 
 

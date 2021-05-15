@@ -1,14 +1,12 @@
 from numpy import inf
 import numpy as np
 import pandas as pd
-from hand_card import HandCard
+from game_generation.hand_card import HandCard
 import pickle
-from deal import deal
-from tree import Node, minimax
+from game_generation.deal import deal
+from game_generation.tree import Node, minimax
 
-
-
-with open("call_landlord_model.pkl", 'rb') as file:
+with open("/Users/dong/PycharmProjects/doudizhu-rengongzhizhang/game_generation/call_landlord_model.pkl", 'rb') as file:
     model = pickle.load(file)
 
 
@@ -16,7 +14,7 @@ def generate_game(game_no):
     # deal cards
     l, p1, p2 = deal(model)
     landlord = HandCard(l.card_dict, 'dict', is_landlord=True)
-    peasant1 = HandCard(p1.card_dict, 'dict',)
+    peasant1 = HandCard(p1.card_dict, 'dict', )
     peasant2 = HandCard(p2.card_dict, 'dict')
     # construct game tree
     node = Node(current=landlord, down=peasant1, up=peasant2)
@@ -42,11 +40,11 @@ def generate_game(game_no):
         up_str = node.up.__str__()
         down_str = node.down.__str__()
         data = pd.DataFrame({
-            'game_no': [game_no], 
-            'player_no': [player_no], 
-            'round_no': [round_no], 
-            'primal_type': [primal_type], 
-            'kicker_type': [kicker_type], 
+            'game_no': [game_no],
+            'player_no': [player_no],
+            'round_no': [round_no],
+            'primal_type': [primal_type],
+            'kicker_type': [kicker_type],
             'kicker_len': [kicker_len],
             'combo_str': [combo_str],
             'current_str': [current_str],
