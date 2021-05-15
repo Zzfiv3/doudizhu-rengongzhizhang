@@ -7,12 +7,7 @@ from deal import deal
 from tree import Node, minimax
 
 
-
-with open("call_landlord_model.pkl", 'rb') as file:
-    model = pickle.load(file)
-
-
-def generate_game(game_no):
+def generate_game(game_no, model):
     # deal cards
     l, p1, p2 = deal(model)
     landlord = HandCard(l.card_dict, 'dict', is_landlord=True)
@@ -28,11 +23,13 @@ def generate_game(game_no):
             break
         if node.pre1_combo is None:
             combo_str = ''
+            primal_str = ''
             primal_type = 0
             kicker_len = 0
             kicker_type = 0
         else:
             combo_str = node.pre1_combo.__str__()
+            primal_str = node.pre1_combo.primal.__str__()
             primal_type = node.pre1_combo.get_primal_type()
             kicker_len = 0 if node.pre1_combo.kicker is None else node.pre1_combo.kicker.kicker_len
             kicker_type = node.pre1_combo.get_kicker_type()
@@ -49,6 +46,7 @@ def generate_game(game_no):
             'kicker_type': [kicker_type], 
             'kicker_len': [kicker_len],
             'combo_str': [combo_str],
+            'primal_str': [primal_str],
             'current_str': [current_str],
             'up_str': [up_str],
             'down_str': [down_str]
@@ -57,10 +55,12 @@ def generate_game(game_no):
     return game_data
 
 
-game_data_all = pd.DataFrame()
-for game_no in range(20):
-    print(game_no)
-    game_data = generate_game(game_no + 1)
-    game_data_all = pd.concat([game_data_all, game_data])
-
-game_data_all.to_csv('sample_game_data.csv', index=False)
+if __name__ == '__main__':
+    with open("call_landlord_model.pkl", 'rb') as file:
+        model = pickle.load(file)
+    game_data_all = pd.DataFrame()
+    for game_no in range(30):
+        game_data = generate_game(game_no + 1, model)
+        game_data_all = pd.concat([game_data_all, game_data])
+        print(f'Successfully generated {game_no + 1} games!')
+        game_data_all.to_csv('sample_game_data.csv', index=False)
