@@ -2,7 +2,7 @@
 斗地主人工智障----CUHKSZ DeepLearning Final Project, team 35
 
 虽然文章和代码写的十分不成熟，但是请各位找到这个项目的朋友 **不要抄袭!** **不要抄袭!** **不要抄袭!**\
-Although the paper and code are not good, but if you find the project, please **DO NOT COPY!** **DO NOT COPY!** **DO NOT COPY!**
+Although the paper and code are not good, if you find the project, please **DO NOT COPY!** **DO NOT COPY!** **DO NOT COPY!**
 
 一些可能用到的文章放在[reference](https://github.com/Zzfiv3/doudizhu-rengongzhizhang/reference) 里面
 
